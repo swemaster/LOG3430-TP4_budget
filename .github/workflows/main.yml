@@ -1,17 +1,22 @@
 name: Python package
-on: [push]
+
+on: [push]  # Trigger the workflow on push events
+
 jobs:
-build:
-runs−on: ubuntu−latest
-steps:
-− uses: actions/checkout@v3
-with:
-fetch−depth: 0
-− name: Setup Python
-uses: actions/setup−python@v4
-with:
-python−version: "3.9"
-− name: Install packages
-run: pip install −r requirements.txt
-− name: Run tests
-run: python manage.py test
+  build:
+    runs-on: ubuntu-latest  # Run the workflow on Ubuntu latest
+
+    steps:
+      - uses: actions/checkout@v3  # Checkout the code from the repository
+        with:
+          fetch-depth: 0  # Fetch all commits from the repository
+
+      - uses: actions/setup-python@v4  # Set up Python environment
+        with:
+          python-version: "3.9"  # Use Python version 3.9
+
+      - name: Install dependencies  # Install dependencies from requirements.txt
+        run: pip install -r requirements.txt
+
+      - name: Run tests  # Run tests using manage.py
+        run: python manage.py test
