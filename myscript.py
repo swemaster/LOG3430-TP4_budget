@@ -19,11 +19,11 @@ for i in range(MAX_ITERATIONS):
     if STOP_ON_FIRST_BAD_COMMIT in os.popen("git bisect log").read().lower():
         os.system("git bisect reset")
         print("\n\n\033[92mFirst bad commit: " + current_hash + "\033[0m")
-        exit(0)
+        exit(1)
 
     if i == MAX_ITERATIONS - 1:
         print("\033[91mNo bad commit found after max number of iterations.\033[0m")
         break
 
 os.system("git bisect reset")
-exit(0)
+exit(1)
